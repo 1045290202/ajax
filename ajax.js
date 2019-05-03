@@ -3,9 +3,9 @@ let ajax = (
 		url: null,//地址
 		type: "GET",//方法  GET  POST
 		data: {},//数据  json格式
-		success: null,//
-		error: null,
-		complete: null
+		success: null,//成功后调用的方法
+		error: null,//失败后调用的方法
+		complete: null//无论如何会调用的方法
 	}) => {
 	if (!para.url) {
 		return;
