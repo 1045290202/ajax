@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax</title>
+	<script src="ajax.js"></script>
+</head>
+<body>
+<h1>
+	ajax封装
+</h1>
+<div id="ajax"></div>
+<script defer>//defer 文档加载完毕执行
+	//方法一  回调地狱
+	ajax({
+		url: "test.php",
+		type: "POST",
+		data: {
+			flag: true,
+			data: "Test successfully!!!"
+		},
+		success: (data) => {
+			console.log("调用函数方式一", data);
+			document.getElementById("ajax").innerHTML += `调用函数方式一 ${data}<br>`;
+		},
+		error: (status) => {
+			console.log(status);
+		},
+		complete: () => {
+			console.log("调用AJAX完成");
+		}
+	});
+
+	//方法二  链式回调
+	ajax({
+		url: "test.php",
+		type: "POST",
+		data: {
+			flag: true,
+			data: "Test successfully!!!"
+		}
+	}).then((data) => {
+		console.log("调用函数方式二", data);
+		document.getElementById("ajax").innerHTML += `调用函数方式二 ${data}<br>`;
+	}, (status) => {
+		console.log(status);
+	}).finally(() => {
+		console.log("调用AJAX完成");
+	});
+</script>
+</body>
+</html>
